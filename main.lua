@@ -55,7 +55,7 @@ end
 -- This function is called when the document is told to save to file.
 -- Returns true if the saving was successful.
 function document.save(doc, filename)
-  local dataStr = "return {".. block.blocksToString(ed.blocks) .. "}"
+  local dataStr = "return ".. block.blocksToString(ed.blocks)
   if love.filesystem.write(filename, dataStr, string.len(dataStr)) then
     print("'" .. filename .. "' saved to '" .. love.filesystem.getSaveDirectory() .. "'")
     return true

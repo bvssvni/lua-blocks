@@ -155,12 +155,17 @@ end
 
 -- Updates the next block.
 function editor.updateNextBlock(blockEditor)
+  assert(blockEditor, "Missing argument 'blockEditor'")
+  
+  if blockEditor.currentBlockIndex < 1 then return end
+  
   local currentBlock = blockEditor.blocks[blockEditor.currentBlockIndex]
   if not currentBlock then return end
   
   local direction = blockEditor.direction
-  
   local nextBlock = block.copyBlock(currentBlock)
+  assert(nextBlock)
+  assert(currentBlock.x)
   if direction == 0 then
     nextBlock.x = currentBlock.x + currentBlock.w
   elseif direction == 1 then
